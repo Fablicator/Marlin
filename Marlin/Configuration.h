@@ -39,6 +39,14 @@
 #define CONFIGURATION_H
 #define CONFIGURATION_H_VERSION 010109
 
+/*
+These are values that are specific to each printer.
+*/
+#define Z_MAX_POS 251.1             //Decrease this value if first layer is too close to the print bed.
+#define X2_MAX_POS 381.7            //If the right extruder is printing too far to the right, increase this value
+#define HOTEND_OFFSET_Y {0.0, 0.1}   //(0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number 
+#define TEMP_SENSOR_BED 15          // Defines what thermistor we are using on the bed (15 for the green thermistor, 16 for the new blue thermistor)
+
 //===========================================================================
 //============================= Getting Started =============================
 //===========================================================================
@@ -225,7 +233,6 @@
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
 //#define HOTEND_OFFSET_X {0.0, 20.00} // (in mm) for each extruder, offset of the hotend on the X axis
-//#define HOTEND_OFFSET_Y {0.0, 5.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // @section machine
 
@@ -315,7 +322,6 @@
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
-#define TEMP_SENSOR_BED 0
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -885,7 +891,6 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
 
 /**
  * Software Endstops
