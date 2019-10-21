@@ -93,3 +93,10 @@
 #define HEATER_BED_PIN      4
 
 #define FAN_PIN             -1
+
+// 
+// Filament out sensors
+// 
+
+#define FIL_RUNOUT_PIN      49
+#define FIL_RUNOUT2_PIN     47
