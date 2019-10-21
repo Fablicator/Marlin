@@ -181,7 +181,8 @@
   #include "pins_GT2560_REV_A.h"      // ATmega1280, ATmega2560                     env:megaatmega1280 env:megaatmega2560
 #elif MB(GT2560_REV_A_PLUS)
   #include "pins_GT2560_REV_A_PLUS.h" // ATmega1280, ATmega2560                     env:megaatmega1280 env:megaatmega2560
-
+#elif MB(FABLICATOR)
+  #include "pins_FABLICATOR.h"        // ATMega 2560                                env:megaatmega2560
 //
 // ATmega1281, ATmega2561
 //
