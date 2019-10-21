@@ -1551,6 +1551,9 @@ These are values that are specific to each printer.
 // ULTIPANEL as seen on Thingiverse.
 //
 //#define ULTIPANEL
+#ifdef FILAMENT_RUNOUT_SENSOR
+  #define ULTIPANEL
+#endif
 
 //
 // PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)
