@@ -46,6 +46,7 @@ These are values that are specific to each printer.
 #define X2_MAX_POS 381.7            // If the right extruder is printing too far to the right, increase this value
 #define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number 
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (15 for the green thermistor, 16 for the new blue thermistor)
+#define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors. 
 
 //===========================================================================
 //============================= Getting Started =============================
@@ -319,7 +320,7 @@ These are values that are specific to each printer.
  */
 #define TEMP_SENSOR_0 20
 #if EXTRUDERS == 2
-#define TEMP_SENSOR_1 20
+  #define TEMP_SENSOR_1 20
 #endif
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
