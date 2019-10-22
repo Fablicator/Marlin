@@ -113,6 +113,9 @@
 #if ANY_THERMISTOR_IS(75) // Many of the generic silicon heat pads use the MGB18-104F39050L32 Thermistor
   #include "thermistortable_75.h"
 #endif
+#if ANY_THERMISTOR_IS(16) // Vishay NTC 10k 3500 1206 10k Pullup
+  #include "thermistortable_16.h"
+#endif
 #if ANY_THERMISTOR_IS(110) // Pt100 with 1k0 pullup
   #include "thermistortable_110.h"
 #endif
