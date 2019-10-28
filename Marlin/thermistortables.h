@@ -86,6 +86,9 @@
 #if ANY_THERMISTOR_IS(15) // JGAurora A5 thermistor calibration
   #include "thermistortable_15.h"
 #endif
+#if ANY_THERMISTOR_IS(17) // 10k 3% Honeywell 175-103LAE thermistor
+  #include "thermistortable_17.h"
+#endif
 #if ANY_THERMISTOR_IS(20) // PT100 with INA826 amp on Ultimaker v2.0 electronics
   #include "thermistortable_20.h"
 #endif
