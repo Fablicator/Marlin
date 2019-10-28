@@ -42,11 +42,11 @@
 /*
 These are values that are specific to each printer.
 */
-#define Z_MAX_POS 251.1             // Decrease this value if first layer is too close to the print bed.
-#define X2_MAX_POS 381.7            // If the right extruder is printing too far to the right, increase this value
-#define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number 
+#define Z_MAX_POS 251.45             // Decrease this value if first layer is too close to the print bed.
+#define X2_MAX_POS 380.9            // If the right extruder is printing too far to the right, increase this value
+#define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (15 for the green thermistor, 16 for the new blue thermistor)
-#define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors. 
+#define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
 
 //===========================================================================
 //============================= Getting Started =============================
@@ -155,7 +155,7 @@ These are values that are specific to each printer.
 
 // This defines the number of extruders
 // :[1, 2, 3, 4, 5]
-#define EXTRUDERS 1
+#define EXTRUDERS 2
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
