@@ -389,9 +389,9 @@ These are values that are specific to each printer.
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Fablicator
-  #define  DEFAULT_Kp 10
-  #define  DEFAULT_Ki 1.25
-  #define  DEFAULT_Kd 99
+  #define  DEFAULT_Kp 11.44
+  #define  DEFAULT_Ki 0.9
+  #define  DEFAULT_Kd 36.31
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
