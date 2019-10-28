@@ -45,7 +45,7 @@ These are values that are specific to each printer.
 #define Z_MAX_POS 251.45             // Decrease this value if first layer is too close to the print bed.
 #define X2_MAX_POS 380.9            // If the right extruder is printing too far to the right, increase this value
 #define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number
-#define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (15 for the green thermistor, 16 for the new blue thermistor)
+#define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
 
 //===========================================================================
