@@ -890,7 +890,7 @@ These are values that are specific to each printer.
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 218.5
+#define X_BED_SIZE 352
 #define Y_BED_SIZE 215
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
