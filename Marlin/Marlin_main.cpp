@@ -15132,7 +15132,7 @@ void idle(
 
   #if ENABLED(STANDALONE_RESUME_BUTTON)
     if(wait_for_user) {
-      if(READ(BTN_ENC)) {
+      if(!READ(BTN_ENC)) {
         wait_for_user = false;
       }
     }
@@ -15466,7 +15466,6 @@ void setup() {
 
   #if ENABLED(STANDALONE_RESUME_BUTTON)
     #define BUTTON_EXISTS(BN) (defined(BTN_## BN) && BTN_## BN >= 0)
-    #define BUTTON_PRESSED(BN) !READ(BTN_## BN)
     #if BUTTON_EXISTS(ENC)
       SET_INPUT_PULLUP(BTN_ENC);
     #endif
