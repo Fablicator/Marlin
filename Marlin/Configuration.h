@@ -46,6 +46,7 @@ These are values that are specific to each printer.
 #define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number
 #define X1_BED_OFFSET   9.5     // Distance between left extruder tip and left side of bed when it's at the home position
 #define X2_BED_OFFSET   17.30   // Distance between right extruder tip and right side of bed when it's at the home position
+#define MIN_EXTRUDER_DISTANCE 34 // Minimum distance between the tips of the nozzles
 
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
