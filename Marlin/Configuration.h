@@ -43,8 +43,10 @@
 These are values that are specific to each printer.
 */
 #define Z_MAX_POS 251.45             // Decrease this value if first layer is too close to the print bed.
-#define X2_MAX_POS 380.9            // If the right extruder is printing too far to the right, increase this value
 #define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number
+#define X1_BED_OFFSET   9.5     // Distance between left extruder tip and left side of bed when it's at the home position
+#define X2_BED_OFFSET   17.30   // Distance between right extruder tip and right side of bed when it's at the home position
+
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
 
@@ -892,8 +894,6 @@ These are values that are specific to each printer.
 // The size of the print bed
 #define X_BED_SIZE      342
 #define Y_BED_SIZE      215
-#define X0_BED_OFFSET   9.5     // Distance between left extruder tip and left side of bed when it's at the home position
-#define X1_BED_OFFSET   17.30   // Distance between right extruder tip and right side of bed when it's at the home position
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
