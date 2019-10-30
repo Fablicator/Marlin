@@ -157,7 +157,11 @@ These are values that are specific to each printer.
 
 // This defines the number of extruders
 // :[1, 2, 3, 4, 5]
-#define EXTRUDERS 2
+#if defined(USING_SX) || defined(USING_FM1)
+  #define EXTRUDERS 1
+#elif defined(USING_MX)
+  #define EXTRUDERS 2
+#endif
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
