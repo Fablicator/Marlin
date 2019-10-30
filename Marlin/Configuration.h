@@ -534,7 +534,9 @@ These are values that are specific to each printer.
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 //#define USE_ZMIN_PLUG
-#define USE_XMAX_PLUG
+#ifdef USING_MX
+  #define USE_XMAX_PLUG
+#endif
 //#define USE_YMAX_PLUG
 #define USE_ZMAX_PLUG
 
