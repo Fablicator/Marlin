@@ -892,7 +892,8 @@ These are values that are specific to each printer.
 // The size of the print bed
 #define X_BED_SIZE      342
 #define Y_BED_SIZE      215
-#define X0_BED_OFFSET   9.5 // Distance between left extruder tip and bed when it's at the home position
+#define X0_BED_OFFSET   9.5     // Distance between left extruder tip and left side of bed when it's at the home position
+#define X1_BED_OFFSET   17.30   // Distance between right extruder tip and right side of bed when it's at the home position
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
