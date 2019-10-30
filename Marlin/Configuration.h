@@ -678,7 +678,14 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+#if ENABLED(USING_FM1)
+  #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+#elif ENABLED(USING_SX)
+  #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+#elif ENABLED(USING_MX)
+  #define DEFAULT_MAX_ACCELERATION      { 2500,2100,200,10000 }
+#endif
+
 
 /**
  * Default Acceleration (change/s) change = mm/s
