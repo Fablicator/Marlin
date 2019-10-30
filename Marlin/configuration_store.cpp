@@ -1083,9 +1083,9 @@ void MarlinSettings::postprocess() {
       EEPROM_READ(tmp2);                         // axis_steps_per_mm
       EEPROM_READ(tmp3);                         // max_feedrate_mm_s
       if (!validating) LOOP_NUM_AXIS_N(i) {
-        planner.max_acceleration_mm_per_s2[i] = i < MOV_AXIS + esteppers ? tmp1[i] : def1[i < COUNT(def1) ? i : COUNT(def1) - 1];
-        planner.axis_steps_per_mm[i]          = i < MOV_AXIS + esteppers ? tmp2[i] : def2[i < COUNT(def2) ? i : COUNT(def2) - 1];
-        planner.max_feedrate_mm_s[i]          = i < MOV_AXIS + esteppers ? tmp3[i] : def3[i < COUNT(def3) ? i : COUNT(def3) - 1];
+        planner.max_acceleration_mm_per_s2[i] = i < MOV_AXIS + esteppers ? def1[i < COUNT(def1) ? i : COUNT(def1) - 1] : tmp1[i];
+        planner.axis_steps_per_mm[i]          = i < MOV_AXIS + esteppers ? def2[i < COUNT(def2) ? i : COUNT(def2) - 1] : tmp2[i];
+        planner.max_feedrate_mm_s[i]          = i < MOV_AXIS + esteppers ? def3[i < COUNT(def3) ? i : COUNT(def3) - 1] : tmp3[i];
       }
 
       EEPROM_READ(planner.acceleration);
