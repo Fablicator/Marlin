@@ -50,6 +50,9 @@ These are values that are specific to each printer.
 
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
+#if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
+  #error "No printer defined! Please define a printer at the top of the Configuration.h!"
+#endif
 
 //===========================================================================
 //============================= Getting Started =============================
