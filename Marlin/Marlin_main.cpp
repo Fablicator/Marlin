@@ -6694,6 +6694,9 @@ inline void gcode_G92() {
           }
         #endif
       }
+
+      // Set axis as homed
+      SBI(axis_homed, (AxisEnum)i);
     }
   }
 
