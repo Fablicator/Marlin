@@ -33,10 +33,12 @@
 FilamentRunoutSensor runout;
 
 bool FilamentRunoutSensor::filament_ran_out; // = false
+bool FilamentRunoutSensor::enabled;   // = true
 uint8_t FilamentRunoutSensor::runout_count; // = 0
 
 void FilamentRunoutSensor::setup() {
-
+  enabled = true;
+  
   #if ENABLED(FIL_RUNOUT_PULLUP)
     #define INIT_RUNOUT_PIN(P) SET_INPUT_PULLUP(P)
   #else

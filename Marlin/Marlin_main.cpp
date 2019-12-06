@@ -10636,6 +10636,23 @@ void quickstop_stepper() {
   SYNC_PLAN_POSITION_KINEMATIC();
 }
 
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)
+  /**
+   * M412: Reset filament runout sensor
+   *
+   *   R      Set filament runout to false
+   */
+  inline void gcode_M412() {
+    if (parser.seen('R')) {
+      runout.reset();
+      // SERIAL_ECHO_START();
+      // SERIAL_ECHOPGM("Filament runout RESET ");
+    }
+
+    if(parser.seen('S'))
+      runout.enabled = parser.value_bool();
+  }
+#endif
 #if HAS_LEVELING
 
   //#define M420_C_USE_MEAN
@@ -13175,6 +13192,10 @@ void process_parsed_command() {
         case 407: gcode_M407(); break;                            // M407: Report Measured Filament Width
       #endif
 
+      #if ENABLED(FILAMENT_RUNOUT_SENSOR)
+        case 412: gcode_M412(); break;                            // M412: Reset filament runout sensor
+      #endif
+
       #if HAS_LEVELING
         case 420: gcode_M420(); break;                            // M420: Set Bed Leveling Enabled / Fade
       #endif
@@ -15464,6 +15485,7 @@ void setup() {
     card.beginautostart();
   #endif
 
+  // Set up setup encoder button as standalone resume button
   #if ENABLED(STANDALONE_RESUME_BUTTON)
     #define BUTTON_EXISTS(BN) (defined(BTN_## BN) && BTN_## BN >= 0)
     #if BUTTON_EXISTS(ENC)
