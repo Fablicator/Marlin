@@ -94,10 +94,16 @@
 
 #define FAN_PIN             -1
 
-// 
+//
 // Filament out sensors
-// 
+//
 
 #define FIL_RUNOUT_PIN      49
 #define FIL_RUNOUT2_PIN     47
 #define BTN_ENC             12
+
+
+//
+// Power supply
+//
+#define PS_ON_PIN 21
