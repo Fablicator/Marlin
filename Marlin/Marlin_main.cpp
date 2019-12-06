@@ -7270,6 +7270,16 @@ inline void gcode_M17() {
 
     #endif
 
+    SERIAL_ECHO_START();
+    SERIAL_ECHOLNPGM("Clear purged filament then press resume.");
+
+    KEEPALIVE_STATE(PAUSED_FOR_USER);
+    wait_for_user = true;    // LCD click or M108 will clear this
+    while (wait_for_user) {
+      idle(true);
+    }
+    KEEPALIVE_STATE(IN_HANDLER);
+
     return true;
   }
 
