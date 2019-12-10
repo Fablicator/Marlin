@@ -671,7 +671,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 400, 350, 45, 20 }
+#define DEFAULT_MAX_FEEDRATE          { 400, 350, 40, 20 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -684,7 +684,7 @@
 #elif ENABLED(USING_SX)
   #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
 #elif ENABLED(USING_MX)
-  #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+  #define DEFAULT_MAX_ACCELERATION      { 2500,2180,120,10000 }
 #endif
 
 
