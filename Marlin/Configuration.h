@@ -39,7 +39,7 @@
 //================== DON'T CHANGE ANYTHING BELOW THIS POINT ==================
 //============================================================================
 
-#define MIN_EXTRUDER_DISTANCE 34 // Minimum distance between the tips of the nozzles
+#define MIN_EXTRUDER_DISTANCE 34.0 // Minimum distance between the tips of the nozzles
 
 #if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
   #error "No printer defined! Please define a printer at the top of the Configuration.h!"
