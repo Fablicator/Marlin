@@ -99,6 +99,9 @@
 #if ANY_THERMISTOR_IS(15) // JGAurora A5 thermistor calibration
   #include "thermistor_15.h"
 #endif
+#if ANY_THERMISTOR_IS(16) // Vishay 10k NTC
+  #include "thermistor_16.h"
+#endif
 #if ANY_THERMISTOR_IS(18) // ATC Semitec 204GT-2 (4.7k pullup) Dagoma.Fr - MKS_Base_DKU001327
   #include "thermistor_18.h"
 #endif
