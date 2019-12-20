@@ -1100,6 +1100,8 @@
 
 // @section homing
 
+#define G92_NO_SAFETY //G92 will set the axis as homed
+
 //#define NO_MOTION_BEFORE_HOMING  // Inhibit movement until all axes have been homed
 
 //#define UNKNOWN_Z_NO_RAISE // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.

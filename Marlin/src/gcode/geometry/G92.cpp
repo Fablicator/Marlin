@@ -86,6 +86,11 @@ void GcodeSuite::G92() {
             #endif
           }
         }
+
+        #ifdef G92_NO_SAFETY
+          // Set axis as homed
+          SBI(axis_homed, (AxisEnum)i);
+        #endif
       }
     } break;
   }
