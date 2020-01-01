@@ -14,7 +14,7 @@
 //=============================================================================
 
 
-#define Z_MAX_POS 251.45             // Decrease this value if first layer is too close to the print bed.
+#define Z_MAX_POS 251.05            // Decrease this value if first layer is too close to the print bed.
 #define HOTEND_OFFSET_Y {0.0, 0.1}  // (0, X in mm) If the right extruder is printing too far towards the front of the machine, decrease this number
 #define X1_BED_OFFSET   9.5     // Distance between left extruder tip and left side of bed when it's at the home position
 #define X2_BED_OFFSET   17.40   // If the right extruder is printing too far to the right, increase this value
