@@ -98,8 +98,8 @@
 // Filament out sensors
 //
 
-#define FIL_RUNOUT_PIN      49
-#define FIL_RUNOUT2_PIN     47
+#define FIL_RUNOUT_PIN      47
+#define FIL_RUNOUT2_PIN     49
 #define BTN_ENC             12
 
 
