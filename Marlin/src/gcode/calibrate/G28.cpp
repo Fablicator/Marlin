@@ -387,6 +387,16 @@ void GcodeSuite::G28(const bool always_home_all) {
         delayed_move_time = 0;
         active_extruder_parked = true;
 
+        if(dxc_is_duplicating()) {
+              extruder_duplication_enabled = IDEX_saved_duplication_state;
+              dual_x_carriage_mode         = IDEX_saved_mode;
+              stepper.set_directions();
+        }
+
+        #if ENABLED(IMPROVE_HOMING_RELIABILITY)
+          end_slow_homing(slow_homing);
+        #endif
+
       #else
 
         homeaxis(X_AXIS);
@@ -432,39 +442,39 @@ void GcodeSuite::G28(const bool always_home_all) {
    * then print a standard GCode file that contains a single print that does a G28 and has no other
    * IDEX specific commands in it.
    */
-  #if ENABLED(DUAL_X_CARRIAGE)
+  // #if ENABLED(DUAL_X_CARRIAGE)
 
-    if (dxc_is_duplicating()) {
+  //   if (dxc_is_duplicating()) {
 
-      #if ENABLED(IMPROVE_HOMING_RELIABILITY)
-        slow_homing = begin_slow_homing();
-      #endif
+  //     #if ENABLED(IMPROVE_HOMING_RELIABILITY)
+  //       slow_homing = begin_slow_homing();
+  //     #endif
 
-      // Always home the 2nd (right) extruder first
-      active_extruder = 1;
-      homeaxis(X_AXIS);
+  //     // Always home the 2nd (right) extruder first
+  //     active_extruder = 1;
+  //     homeaxis(X_AXIS);
 
-      // Remember this extruder's position for later tool change
-      inactive_extruder_x_pos = current_position.x;
+  //     // Remember this extruder's position for later tool change
+  //     inactive_extruder_x_pos = current_position.x;
 
-      // Home the 1st (left) extruder
-      active_extruder = 0;
-      homeaxis(X_AXIS);
+  //     // Home the 1st (left) extruder
+  //     active_extruder = 0;
+  //     homeaxis(X_AXIS);
 
-      // Consider the active extruder to be parked
-      raised_parked_position = current_position;
-      delayed_move_time = 0;
-      active_extruder_parked = true;
-      extruder_duplication_enabled = IDEX_saved_duplication_state;
-      dual_x_carriage_mode         = IDEX_saved_mode;
-      stepper.set_directions();
+  //     // Consider the active extruder to be parked
+  //     raised_parked_position = current_position;
+  //     delayed_move_time = 0;
+  //     active_extruder_parked = true;
+  //     extruder_duplication_enabled = IDEX_saved_duplication_state;
+  //     dual_x_carriage_mode         = IDEX_saved_mode;
+  //     stepper.set_directions();
 
-      #if ENABLED(IMPROVE_HOMING_RELIABILITY)
-        end_slow_homing(slow_homing);
-      #endif
-    }
+  //     #if ENABLED(IMPROVE_HOMING_RELIABILITY)
+  //       end_slow_homing(slow_homing);
+  //     #endif
+  //   }
 
-  #endif // DUAL_X_CARRIAGE
+  // #endif // DUAL_X_CARRIAGE
 
   endstops.not_homing();
 
