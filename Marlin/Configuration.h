@@ -955,7 +955,11 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS (X_BED_SIZE + X1_BED_OFFSET)
+#if ENABLED(USING_MX)
+  #define X_MAX_POS (X_BED_SIZE + X1_BED_OFFSET - MIN_EXTRUDER_DISTANCE/2)
+#else
+  #define X_MAX_POS (X_BED_SIZE + X1_BED_OFFSET)
+#endif
 #define Y_MAX_POS Y_BED_SIZE
 
 /**

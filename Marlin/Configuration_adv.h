@@ -346,9 +346,9 @@
 #endif
 #if ENABLED(DUAL_X_CARRIAGE)
   #define X1_MIN_POS X_MIN_POS  // set minimum to ensure first x-carriage doesn't hit the parked second X-carriage
-  #define X1_MAX_POS X_MAX_POS - MIN_EXTRUDER_DISTANCE // set maximum to ensure first x-carriage doesn't hit the parked second X-carriage
-  #define X2_MAX_POS X_MAX_POS + X2_BED_OFFSET // If the right extruder is printing too far to the right, increase this value
-  #define X2_MIN_POS MIN_EXTRUDER_DISTANCE     // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
+  #define X1_MAX_POS X_MAX_POS // set maximum to ensure first x-carriage doesn't hit the parked second X-carriage
+  #define X2_MAX_POS (X_MAX_POS + X2_BED_OFFSET + MIN_EXTRUDER_DISTANCE/2) // If the right extruder is printing too far to the right, increase this value
+  #define X2_MIN_POS (X_MIN_POS + X2_BED_OFFSET + MIN_EXTRUDER_DISTANCE/2)     // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
   #define X2_HOME_DIR 1     // the second X-carriage always homes to the maximum endstop position
   #define X2_HOME_POS X2_MAX_POS // default home position is the maximum carriage position
       // However: In this mode the HOTEND_OFFSET_X value for the second extruder provides a software
