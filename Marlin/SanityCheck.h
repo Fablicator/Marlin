@@ -375,9 +375,10 @@
 /**
  * Validate that the bed size fits
  */
-static_assert(X_MAX_LENGTH >= X_BED_SIZE && Y_MAX_LENGTH >= Y_BED_SIZE,
-  "Movement bounds ([XY]_MIN_POS, [XY]_MAX_POS) are too narrow to contain [XY]_BED_SIZE.");
-
+#if DISABLED(USING_MX)
+  static_assert(X_MAX_LENGTH >= X_BED_SIZE && Y_MAX_LENGTH >= Y_BED_SIZE,
+    "Movement bounds ([XY]_MIN_POS, [XY]_MAX_POS) are too narrow to contain [XY]_BED_SIZE.");
+#endif
 /**
  * Granular software endstops (Marlin >= 1.1.7)
  */
