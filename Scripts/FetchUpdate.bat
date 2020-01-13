@@ -1,2 +1,2 @@
 cd ..
-powershell -executionpolicy remotesigned -file updatescript.ps1
+powershell -executionpolicy remotesigned -file ./Scripts/ps/fetchscript.ps1
