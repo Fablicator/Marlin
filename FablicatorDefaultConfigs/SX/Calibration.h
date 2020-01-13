@@ -25,11 +25,6 @@
 #define  DEFAULT_Ki 0.9
 #define  DEFAULT_Kd 36.31
 
-// PID with 15V supply
-// #define  DEFAULT_Kp 6.91
-// #define  DEFAULT_Ki 0.5
-// #define  DEFAULT_Kd 23.91
-
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
 
