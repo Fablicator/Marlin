@@ -1102,7 +1102,12 @@
 
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
+#ifdef USING_SX
+  #define X_MIN_POS -X1_BED_OFFSET
+#else
+  #define X_MIN_POS 0
+#endif
+
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 
