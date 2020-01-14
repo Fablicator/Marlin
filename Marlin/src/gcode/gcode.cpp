@@ -835,6 +835,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 1000: M1000(); break;                                // M1000: Resume from power-loss
       #endif
 
+      #if ENABLED(USING_MX) || ENABLED(USING_SX) || ENABLED(USING_FM1)
+        case 9411: M9411(); break;                                // M9411: Report calibration parameters.
+      #endif
+
       default: parser.unknown_command_error(); break;
     }
     break;

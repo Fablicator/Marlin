@@ -938,6 +938,10 @@ private:
     static void M7219();
   #endif
 
+  #if ENABLED(USING_MX) || ENABLED(USING_SX) || ENABLED(USING_FM1)
+    static void M9411();
+  #endif
+
   static void T(const uint8_t tool_index);
 
 };
