@@ -31,9 +31,15 @@
    */
   void GcodeSuite::M9411() {
     SERIAL_ECHO_START();
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
     SERIAL_ECHOLNPGM("----------------------------");
-    SERIAL_ECHOLNPGM("These are the current parameters written to the Calibration.h");
+    SERIAL_ECHOLNPGM("Calibration.h");
     SERIAL_ECHOLNPGM("----------------------------");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
     #if ENABLED(USING_MX)
       SERIAL_ECHOLNPGM("#define USING_MX");
     #elif ENABLED(USING_FM1)
@@ -42,19 +48,24 @@
       SERIAL_ECHOLNPGM("#define USING_SX");
     #endif
 
+    SERIAL_ECHOLNPGM(" ");
+
     SERIAL_ECHOLNPAIR("#define Z_MAX_POS ", Z_MAX_POS);
     SERIAL_ECHOLNPAIR("#define X1_BED_OFFSET ", X1_BED_OFFSET);
     SERIAL_ECHOLNPAIR("#define X2_BED_OFFSET ", X2_BED_OFFSET);
+    #if ENABLED(USING_MX)
+      float tmp[] = HOTEND_OFFSET_Y;
+      SERIAL_ECHOLNPAIR("#define HOTEND_OFFSET_Y { ", tmp[0],", ", tmp[1], " }");
+    #endif
+    SERIAL_ECHOLNPGM(" ");
     SERIAL_ECHOLNPAIR("#define DEFAULT_Kp ", DEFAULT_Kp);
     SERIAL_ECHOLNPAIR("#define DEFAULT_Ki ", DEFAULT_Ki);
     SERIAL_ECHOLNPAIR("#define DEFAULT_Kd ", DEFAULT_Kd);
+    SERIAL_ECHOLNPGM(" ");
     SERIAL_ECHOLNPAIR("#define TEMP_SENSOR_BED ", TEMP_SENSOR_BED);
     
-    #if ENABLED(USING_MX)
-      float tmp[] = HOTEND_OFFSET_Y;
-      SERIAL_ECHOLNPAIR("#define HOTEND_OFFSET_Y {", tmp[0],", ", tmp[1], " }");
-    #endif
 
+    SERIAL_ECHOLNPGM(" ");
     #if ENABLED(FILAMENT_RUNOUT_SENSOR)
       SERIAL_ECHOLNPGM("#define FILAMENT_RUNOUT_SENSOR");
     #endif
