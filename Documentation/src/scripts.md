@@ -16,6 +16,8 @@ To update the firmware or check for updates to the firmware, run ***FetchUpdate.
 
 If you want to update, type `Y` ( make sure the Y is capitalized ) then click enter. Your version will then be updated to the latest one.
 
+**After updating you must open the configuration and upload the firmware again.**
+
 ## Opening the configuration
 
 The easy way to open the current configuration is to run ***OpenConfiguration.bat***. This will open the firmware files and show `Calibration.h`. 
