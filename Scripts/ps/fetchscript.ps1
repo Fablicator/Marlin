@@ -1,4 +1,4 @@
-$branch = "fablicator-1.1.x"
+$branch = "fablicator-1.1.x-stable"
 # $docsdir = [Environment]::GetFolderPath('MyDocuments')
 
 Clear-Host
