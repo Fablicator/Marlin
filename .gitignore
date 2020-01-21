@@ -149,3 +149,4 @@ CMakeListsPrivate.txt
 cmake-build-*
 .gcc-flags.json
 .clang_complete
+Marlin/Calibration.h
