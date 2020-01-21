@@ -12309,6 +12309,53 @@ inline void gcode_M999() {
   flush_and_request_resend();
 }
 
+#if ENABLED(USING_MX) || ENABLED(USING_SX) || ENABLED(USING_FM1)
+  inline void gcode_M9411() {
+    SERIAL_ECHO_START();
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM("----------------------------");
+    SERIAL_ECHOLNPGM("Calibration.h");
+    SERIAL_ECHOLNPGM("----------------------------");
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM(" ");
+    #if ENABLED(USING_MX)
+      SERIAL_ECHOLNPGM("#define USING_MX");
+    #elif ENABLED(USING_FM1)
+      SERIAL_ECHOLNPGM("#define USING_FM1");
+    #elif ENABLED(USING_SX)
+      SERIAL_ECHOLNPGM("#define USING_SX");
+    #endif
+
+    SERIAL_ECHOLNPGM(" ");
+
+    SERIAL_ECHOLNPAIR("#define Z_MAX_POS ", Z_MAX_POS);
+    SERIAL_ECHOLNPAIR("#define X1_BED_OFFSET ", X1_BED_OFFSET);
+    SERIAL_ECHOLNPAIR("#define X2_BED_OFFSET ", X2_BED_OFFSET);
+    #if ENABLED(USING_MX)
+      float tmp[] = HOTEND_OFFSET_Y;
+      SERIAL_ECHOLNPAIR("#define HOTEND_OFFSET_Y { ", tmp[0],", ", tmp[1], " }");
+    #endif
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPAIR("#define DEFAULT_Kp ", DEFAULT_Kp);
+    SERIAL_ECHOLNPAIR("#define DEFAULT_Ki ", DEFAULT_Ki);
+    SERIAL_ECHOLNPAIR("#define DEFAULT_Kd ", DEFAULT_Kd);
+    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPAIR("#define TEMP_SENSOR_BED ", TEMP_SENSOR_BED);
+    
+
+    SERIAL_ECHOLNPGM(" ");
+    #if ENABLED(FILAMENT_RUNOUT_SENSOR)
+      SERIAL_ECHOLNPGM("#define FILAMENT_RUNOUT_SENSOR");
+    #endif
+    
+    #if ENABLED(USING_INDUSTRIAL_SUPPLY)
+      SERIAL_ECHOLNPGM("#define USING_INDUSTRIAL_SUPPLY");
+    #endif
+  }
+#endif
 #if DO_SWITCH_EXTRUDER
   #if EXTRUDERS > 3
     #define REQ_ANGLES 4
@@ -13319,6 +13366,9 @@ void process_parsed_command() {
 
       case 999: gcode_M999(); break;                              // M999: Restart after being Stopped
 
+      #if ENABLED(USING_MX) || ENABLED(USING_SX) || ENABLED(USING_FM1)
+        case 9411: gcode_M9411(); break; // M9411 Print calibration parameters
+      #endif
       default: parser.unknown_command_error();
     }
     break;
