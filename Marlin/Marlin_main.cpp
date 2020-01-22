@@ -12336,7 +12336,9 @@ inline void gcode_M999() {
     SERIAL_ECHOLNPAIR("#define X2_BED_OFFSET ", X2_BED_OFFSET);
     #if ENABLED(USING_MX)
       float tmp[] = HOTEND_OFFSET_Y;
-      SERIAL_ECHOLNPAIR("#define HOTEND_OFFSET_Y { ", tmp[0],", ", tmp[1], " }");
+      SERIAL_ECHOPAIR("#define HOTEND_OFFSET_Y { ", tmp[0]);
+      SERIAL_ECHOPAIR(", ", tmp[1]);
+      SERIAL_ECHOLNPGM(" }");
     #endif
     SERIAL_ECHOLNPGM(" ");
     SERIAL_ECHOLNPAIR("#define DEFAULT_Kp ", DEFAULT_Kp);
