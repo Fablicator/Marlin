@@ -249,6 +249,7 @@
  * M928 - Start SD logging: "M928 filename.gco". Stop with M29. (Requires SDSUPPORT)
  * M999 - Restart after being stopped by error
  *
+ * M9411 - Echo contents of the Calibration.h file
  * "T" Codes
  *
  * T0-T3 - Select an extruder (tool) by index: "T<n> F<units/min>"
@@ -12309,6 +12310,13 @@ inline void gcode_M999() {
   flush_and_request_resend();
 }
 
+/**
+ * M9411: Echo printer calibration parameters
+ * 
+ * Echos the contents of the Calibration.h file.
+ * 
+ * This should be used to restore the Calibration.h to the PC if it's lost.
+ */
 #if ENABLED(USING_MX) || ENABLED(USING_SX) || ENABLED(USING_FM1)
   inline void gcode_M9411() {
     SERIAL_ECHO_START();
