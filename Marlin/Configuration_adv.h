@@ -184,7 +184,7 @@
    * As described above, except for the bed (M140/M190/M303).
    */
   #define WATCH_BED_TEMP_PERIOD 200                // Seconds
-  #define WATCH_BED_TEMP_INCREASE 0.1               // Degrees Celsius
+  #define WATCH_BED_TEMP_INCREASE 1               // Degrees Celsius
 #endif
 
 /**

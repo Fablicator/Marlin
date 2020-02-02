@@ -713,6 +713,14 @@ void idle(
   #if ENABLED(POLL_JOG)
     joystick.inject_jog_moves();
   #endif
+
+   #if ENABLED(STANDALONE_RESUME_BUTTON)
+    if(wait_for_user) {
+      if(!READ(BTN_ENC)) {
+        wait_for_user = false;
+      }
+    }
+  #endif
 }
 
 /**
@@ -866,8 +874,6 @@ void setup() {
   #if HAS_TMC220x
     tmc_serial_begin();
   #endif
-
-  setup_powerhold();
 
   #if HAS_STEPPER_RESET
     disableStepperDrivers();
@@ -1122,6 +1128,15 @@ void setup() {
   #if ENABLED(PRUSA_MMU2)
     mmu2.init();
   #endif
+
+  // Set up setup encoder button as standalone resume button
+  #if ENABLED(STANDALONE_RESUME_BUTTON)
+    #if BUTTON_EXISTS(ENC)
+      SET_INPUT_PULLUP(BTN_ENC);
+    #endif
+  #endif
+  
+  setup_powerhold();
 }
 
 /**
