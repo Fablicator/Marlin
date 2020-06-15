@@ -1,2 +1,2 @@
 cd ..
-powershell -executionpolicy bypass -file ./Scripts/ps/fetchscript.ps1
+powershell -executionpolicy bypass -file ./Scripts/ps/update.ps1
