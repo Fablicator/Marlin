@@ -21,9 +21,9 @@
 
 // EXTRUDER PID TUNING
 // USE "M303 C8 E0 S240" TO FIND VALUES AUTOMATICALLY
-// #define  DEFAULT_Kp 11.44
-// #define  DEFAULT_Ki 0.9
-// #define  DEFAULT_Kd 36.31
+#define  DEFAULT_Kp 11.44
+#define  DEFAULT_Ki 0.9
+#define  DEFAULT_Kd 36.31
 
 #define TEMP_SENSOR_BED 16          // Defines what thermistor we are using on the bed (17 for the green thermistor, 16 for the new blue thermistor)
 #define FILAMENT_RUNOUT_SENSOR    // Uncomment this to enable filament out sensors.
