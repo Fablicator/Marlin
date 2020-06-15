@@ -1,2 +1,2 @@
-Stop-Process -Name "fablicator"
+try {Stop-Process -Name "fablicator"}catch{}
 platformio run --target upload
