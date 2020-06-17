@@ -1,18 +1,21 @@
-# try {
-#     Stop-Process -Name "fablicator" -ErrorAction "SilentlyContinue"
-# }catch{}
-
-Write-Host "Fablicator Calibration"
-Start-Sleep 1
+Write-Host "Fablicator Z Axis Calibration"
+Write-Host ""
+Write-Host "Warning! " -NoNewline -ForegroundColor Red
+Write-Host "This calibration should only be done if:"
+Write-Host ""
+Write-Host "    - The bed is replaced"
+Write-Host "    - The original calibration file is lost"
 Write-Host ""
 Write-Host "Before calibrating the machine, we're going to upload the firmware."
-Start-Sleep 1
 Write-Host ""
 Write-Host "This will ensure that we are doing a proper calibration."
-Start-Sleep 1
+Write-Host ""
 Write-Host ""
 Pause
 
+Clear-Host
+Write-Host "Uploading firmware..."
+Start-Sleep 1
 Set-Location $PSScriptRoot
 Start-Process powershell "-ExecutionPolicy Bypass -File .\upload.ps1" -NoNewWindow -Wait
 
@@ -81,7 +84,6 @@ if(!($machine_type)) {
     exit
 }
 Write-Host ""
-# Pause
 
 ## Find the port the printer is on
 $found_port = $false
@@ -197,137 +199,19 @@ Clear-Host
 Write-Host "Z Calibration Complete" -ForegroundColor Green
 Start-Sleep -Seconds 1.5
 Clear-Host
+$port.Close()
 
-# Run X1 Calibration
-
-$port.WriteLine("G28 X Y")
-$port.WriteLine("G0 Z0 Y1")
-
-Write-Host "#### X Axis Calibration ####" -ForegroundColor Red
+Write-Host "PREVIEW OF " -NoNewline
+Write-Host "Calibration.h" -ForegroundColor Green
 Write-Host ""
-
-Write-Host "Moving to starting position for homing the X axis"
-Start-Sleep 1
-Write-Host ""
-Write-Host "(Only press enter when it's finished moving)"
-Start-Sleep 1
-Write-Host ""
-Pause
-
-$x1_offset = 0
-do{
-    Clear-Host
-    Write-Host "#### Left Extruder Calibration ####" -ForegroundColor Red
-    Write-Host ""
-    Write-Host "Move the left extruder left and right until the tip of the nozzle"
-    Write-Host "is on the left edge of the bed glass"
-    Write-Host ""
-    Write-Host "CONTROLS:"
-    Write-Host ""
-    Write-Host "    'q' - left 0.1mm"
-    Write-Host "    'e' - right 0.1mm"
-    Write-Host "    'a' - left 1mm"
-    Write-Host "    'd' - right 1mm"
-    Write-Host ""
-    Write-Host "Press 'c' to finish"
-    Write-Host ""
-    Write-Host "X1 Offset = $x1_offset"
-    $key = (Get-Host).UI.RawUI.ReadKey().Character;
-
-    $port.WriteLine("G91")
-    $port.WriteLine("T0")
-
-    if($key -eq 'q') {
-        $x1_offset -= 0.1
-        $port.WriteLine("G0 X-0.1")
-    }elseif($key -eq 'e') {
-        $x1_offset += 0.1
-        $port.WriteLine("G0 X0.1")
-    }elseif($key -eq 'a') {
-        $x1_offset -= 1
-        $port.WriteLine("G0 X-1")
-    }elseif($key -eq 'd') {
-        $x1_offset += 1
-        $port.WriteLine("G0 X1")
-    }elseif($key -eq 'c') {
-        break
-    }
-
-    if($x1_offset -lt 0) {$x1_offset = 0}
-    $x1_offset = [math]::Round($x1_offset,1)
-    Start-Sleep 0.25
-}while($true)
-
-Clear-Host
-Write-Host "Left Extruder Calibration Complete" -ForegroundColor Green
-Start-Sleep -Seconds 1.5
-
-# Run X2 calibration if we are using an MX
-
-if($machine_type -match "mx") {
-    $x2_offset = 0
-    do{
-        Clear-Host
-        Write-Host "#### Right extruder Calibration ####" -ForegroundColor Red
-        Write-Host ""
-        Write-Host "Move the right extruder left and right until the tip of the nozzle"
-        Write-Host "is on the right edge of the bed glass"
-        Write-Host ""
-        Write-Host "CONTROLS:"
-        Write-Host ""
-        Write-Host "    'q' - left 0.1mm"
-        Write-Host "    'e' - right 0.1mm"
-        Write-Host "    'a' - left 1mm"
-        Write-Host "    'd' - right 1mm"
-        Write-Host ""
-        Write-Host "Press 'c' to finish"
-        Write-Host ""
-        Write-Host "X1 Offset = $x2_offset"
-        $key = (Get-Host).UI.RawUI.ReadKey().Character;
-
-        $port.WriteLine("G91")
-        $port.WriteLine("T1")
-
-        if($key -eq 'q') {
-            $x2_offset += 0.1
-            $port.WriteLine("G0 X-0.1")
-        }elseif($key -eq 'e') {
-            $x2_offset -= 0.1
-            $port.WriteLine("G0 X0.1")
-        }elseif($key -eq 'a') {
-            $x2_offset += 1
-            $port.WriteLine("G0 X-1")
-        }elseif($key -eq 'd') {
-            $x2_offset -= 1
-            $port.WriteLine("G0 X1")
-        }elseif($key -eq 'c') {
-            break
-        }
-
-        if($x2_offset -lt 0) {$x2_offset = 0}
-        $x2_offset = [math]::Round($x2_offset,1)
-        Start-Sleep 0.25
-    }while($true)
-}
-
-Clear-Host
-Write-Host "Right Extruder Calibration Complete" -ForegroundColor Green
-Start-Sleep -Seconds 1.5
-
-Clear-Host 
-Write-Host "Calibration complete.." -ForegroundColor Green
-Start-Sleep -Seconds 1
-Write-Host ""
-Write-Host "Previewing changes to Calibration.h"
-Write-Host ""
-Start-Sleep -Seconds 1
-Write-Host "Each change is denoted by a red arrow ("-NoNewline
+Write-Host "Changes are denoted by red arrow ( " -NoNewline
 Write-Host "-->>" -NoNewline -ForegroundColor Red
-Write-Host ")"
+Write-Host " )"
 Write-Host ""
-Start-Sleep -Seconds 2
-
-Clear-Host
+Write-Host ""
+Write-Host "------------------------------------------------"
+Write-Host ""
+Write-Host ""
 
 $temp_file = "$PSScriptRoot\cal_temp"
 if(Test-Path $temp_file) {
@@ -347,41 +231,40 @@ foreach ($line in Get-Content $calibration_h) {
         $diff = (Replace-DefineNumber $line $target_def ([string]$def_val))
         Write-Host $diff -ForegroundColor Green
         Add-Content $temp_file $diff
-        # Add-Content $temp_file "`n"
         continue
-    }
-
-    ## Diff X1_BED_OFFSET
-    $target_def = "X1_BED_OFFSET"
-    if(Is-Defined $line $target_def){
-        Write-Host $line -NoNewline
-        Write-Host "    -->>    " -NoNewline -ForegroundColor Red
-        $diff = (Replace-DefineNumber $line $target_def ([string]$x1_offset))
-        Write-Host $diff -ForegroundColor Green
-        Add-Content $temp_file $diff
-        # Add-Content $temp_file "`n"
-        continue
-    }
-
-    if($machine_type -match "mx") {
-        ## Diff X2_BED_OFFSET
-        $target_def = "X2_BED_OFFSET"
-        if(Is-Defined $line $target_def){
-            Write-Host $line -NoNewline
-            Write-Host "    -->>    " -NoNewline -ForegroundColor Red
-            $diff = (Replace-DefineNumber $line $target_def ([string]$x2_offset))
-            Write-Host $diff -ForegroundColor Green
-            Add-Content $temp_file $diff
-            # Add-Content $temp_file "`n"
-            continue
-        }
     }
 
     Write-Host $line
     Add-Content $temp_file $line
-    # Add-Content $temp_file "`n"
 }
 
 Write-Host ""
 Write-Host ""
 Pause
+
+Clear-Host
+
+Write-Host "Accept changes? These will be uploaded to the board."
+Write-Host "y - yes"
+Write-Host "n - no"
+Write-Host ""
+
+$write_changes = $false
+do {
+    $resp = Read-Host "Enter y or n"
+    if($resp -match "y") {
+        $write_changes = $true
+        break
+    }elseif ($resp -match "n") {
+        break
+    }
+}while($true)
+
+if($write_changes) {
+    Remove-Item $calibration_h
+    Copy-Item $temp_file $calibration_h
+    Set-Location $PSScriptRoot
+    Start-Process powershell "-ExecutionPolicy Bypass -File .\upload.ps1" -NoNewWindow -Wait
+}
+
+Remove-Item $temp_file
