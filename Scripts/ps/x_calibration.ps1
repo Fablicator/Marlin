@@ -124,7 +124,7 @@ Clear-Host
 # Run Z Calibration
 $port.Open()
 $port.WriteLine("G28")
-$port.WriteLine("G0 Z0 Y1")
+$port.WriteLine("G0 Z0.5 Y1")
 
 Write-Host "#### X Axis Calibration ####" -ForegroundColor Red
 Write-Host ""
