@@ -180,7 +180,7 @@ do{
 
     if($x1_offset -lt 0) {$x1_offset = 0}
     $x1_offset = [math]::Round($x1_offset,1)
-    Start-Sleep 0.25
+    Start-Sleep 0.5
 }while($true)
 
 Clear-Host
@@ -231,7 +231,7 @@ if($machine_type -match "mx") {
 
         if($x2_offset -lt 0) {$x2_offset = 0}
         $x2_offset = [math]::Round($x2_offset,1)
-        Start-Sleep 0.25
+        Start-Sleep 0.5
     }while($true)
     
     Clear-Host
