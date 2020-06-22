@@ -21,7 +21,7 @@ Start-Process powershell "-ExecutionPolicy Bypass -File .\upload.ps1" -NoNewWind
 
 # Check is the item is defined
 function Is-Defined($line, $def) {
-    if(($line -match "\s*#define\s+$def.*") -and !($line -match "\s*\/\/.*")){
+    if(($line -match "\s*#define\s+$def.*") -and !($line -match "^\s*\/\/.*")){
         return $true
     }
 
