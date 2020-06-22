@@ -87,22 +87,24 @@ Write-Host ""
 
 ## Find the port the printer is on
 $found_port = $false
-ForEach ($portname in ([System.IO.Ports.SerialPort]::getportnames())) { 
-    $port = new-object System.IO.Ports.SerialPort $portname,250000,None,8,one
-    $port.Open()
-    $port.DtrEnable = $true
-    $port.DtrEnable = $false
-    Start-Sleep -Seconds 0.5
-    $port.ReadLine() > $null; # Toss first line
-    if(($port.ReadLine()) -match "Marlin") {
-        $found_port = $true
+ForEach ($portname in ([System.IO.Ports.SerialPort]::getportnames())) {
+    try{
+        $port = new-object System.IO.Ports.SerialPort $portname,250000,None,8,one
+        $port.Open()
+        $port.DtrEnable = $true
+        $port.DtrEnable = $false
+        Start-Sleep -Seconds 0.5
+        $port.ReadLine() > $null; # Toss first line
+        if(($port.ReadLine()) -match "Marlin") {
+            $found_port = $true
+            $port.Close()
+            # Write-Host "Printer found at: $portname" -ForegroundColor Green
+            # Start-Sleep -Seconds 1
+            break
+        }
         $port.Close()
-        # Write-Host "Printer found at: $portname" -ForegroundColor Green
-        # Start-Sleep -Seconds 1
-        break
-    }
-    $port.Close()
-    $port.Dispose()
+        $port.Dispose()
+    }catch {}
 }
 
 if(!($found_port)) {
