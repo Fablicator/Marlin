@@ -22,7 +22,7 @@
 #pragma once
 
 // Vishay NTC 10k 3500 1206 10k Pullup
-const short temptable_16[][2] PROGMEM = {
+const temp_entry_t temptable_16[] PROGMEM = {
 {OV(0), 140 },
 {OV(20), 130 },
 {OV(31), 120 },
