@@ -31,15 +31,11 @@
    */
   void GcodeSuite::M9411() {
     SERIAL_ECHO_START();
-    SERIAL_ECHOLNPGM(" ");
-    SERIAL_ECHOLNPGM(" ");
-    SERIAL_ECHOLNPGM(" ");
-    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM("\n\n\n\n");
     SERIAL_ECHOLNPGM("----------------------------");
     SERIAL_ECHOLNPGM("Calibration.h");
     SERIAL_ECHOLNPGM("----------------------------");
-    SERIAL_ECHOLNPGM(" ");
-    SERIAL_ECHOLNPGM(" ");
+    SERIAL_ECHOLNPGM("\n\n\n\n");
     #if ENABLED(USING_MX)
       SERIAL_ECHOLNPGM("#define USING_MX");
     #elif ENABLED(USING_FM1)
