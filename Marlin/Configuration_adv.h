@@ -2024,8 +2024,6 @@
     //#define TOOLCHANGE_PARK_X_ONLY          // X axis only move
     //#define TOOLCHANGE_PARK_Y_ONLY          // Y axis only move
   #endif
-#endif // EXTRUDERS > 1
-
 /**
  * Advanced Pause
  * Experimental feature for filament change support and for parking the nozzle when paused.
