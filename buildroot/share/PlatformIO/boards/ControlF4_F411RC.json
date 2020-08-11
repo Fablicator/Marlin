@@ -1,0 +1,27 @@
+{
+  "build": {
+    "core": "stm32",
+    "cpu": "cortex-m4",
+    "extra_flags": "-DSTM32F4 -DSTM32F411xE",
+    "f_cpu": "96000000L",
+    "hwids": [["0x0403", "0x6001"]],
+    "mcu": "stm32f411rct6",
+    "variant": "CONTROLF4_F411RC"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "STM32F411RC (128k RAM. 240k Flash)",
+  "upload": {
+    "disable_flushing": false,
+    "maximum_ram_size": 131072,
+    "maximum_size": 245760,
+    "protocol": "custom",
+    "protocols": ["custom"],
+    "require_upload_port": true,
+    "use_1200bps_touch": false,
+    "wait_for_upload_port": false
+  },
+  "url": "https://www.st.com/en/microcontrollers-microprocessors/stm32f411rc.html",
+  "vendor": "Generic"
+}
