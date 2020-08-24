@@ -2023,8 +2023,7 @@
     #define TOOLCHANGE_PARK_XY_FEEDRATE 6000  // (mm/m)
     //#define TOOLCHANGE_PARK_X_ONLY          // X axis only move
     //#define TOOLCHANGE_PARK_Y_ONLY          // Y axis only move
-  #endif
-#endif // EXTRUDERS > 1
+#endif
 
 /**
  * Advanced Pause
