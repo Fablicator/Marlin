@@ -137,7 +137,8 @@
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
 #ifdef STM32F4
-  #define BAUDRATE 115200
+  // #define BAUDRATE 115200
+  #define BAUDRATE 250000
 #else
   #define BAUDRATE 250000
 #endif
@@ -554,7 +555,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+// #define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 

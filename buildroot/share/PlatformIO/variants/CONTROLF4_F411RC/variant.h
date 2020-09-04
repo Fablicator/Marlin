@@ -1,20 +1,15 @@
 /*
-  Copyright (c) 2011 Arduino.  All right reserved.
-
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 2.1 of the License, or (at your option) any later version.
-
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Lesser General Public License for more details.
-
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+ *******************************************************************************
+ * Copyright (c) 2019, STMicroelectronics
+ * All rights reserved.
+ *
+ * This software component is licensed by ST under BSD 3-Clause license,
+ * the "License"; You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at:
+ *                        opensource.org/licenses/BSD-3-Clause
+ *
+ *******************************************************************************
+ */
 
 #ifndef _VARIANT_ARDUINO_STM32_
 #define _VARIANT_ARDUINO_STM32_
@@ -23,105 +18,182 @@
 extern "C" {
 #endif // __cplusplus
 
+/*----------------------------------------------------------------------------
+ *        Pins
+ *----------------------------------------------------------------------------*/
 
-//                  | DIGITAL | ANALOG | USART     | TWI                  | SPI                            | SPECIAL   |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
-#define PA0  A0  // | 0       | A0     |           |                      |                                |           |
-#define PA1  A1  // | 1       | A1     |           |                      | SPI4_MOSI                      |           |
-#define PA2  A2  // | 2       | A2     | USART2_TX |                      |                                |           |
-#define PA3  A3  // | 3       | A3     | USART2_RX |                      |                                |           |
-#define PA4  A4  // | 4       | A4     |           |                      | SPI1_SS, (SPI3_SS)             |           |
-#define PA5  A5  // | 5       | A5     |           |                      | SPI1_SCK                       |           |
-#define PA6  A6  // | 6       | A6     |           |                      | SPI1_MISO                      |           |
-#define PA7  A7  // | 7       | A7     |           |                      | SPI1_MOSI                      |           |
-#define PA8  8   // | 8       |        |           | TWI3_SCL             |                                |           |
-#define PA9  9   // | 9       |        | USART1_TX |                      |                                |           |
-#define PA10 10  // | 10      |        | USART1_RX |                      | SPI5_MOSI                      |           |
-#define PA11 11  // | 11      |        | USART6_TX |                      | SPI4_MISO                      |           |
-#define PA12 12  // | 12      |        | USART6_RX |                      | SPI5_MISO                      |           |
-#define PA13 13  // | 13      |        |           |                      |                                | SWD_SWDIO |
-#define PA14 14  // | 14      |        |           |                      |                                | SWD_SWCLK |
-#define PA15 15  // | 15      |        | USART1_TX |                      | SPI3_SS, (SPI1_SS)             |           |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
-#define PB0  A8  // | 16      | A8     |           |                      | SPI5_SCK                       |           |
-#define PB1  A9  // | 17      | A9     |           |                      | SPI5_SS                        |           |
-#define PB2  18  // | 18      |        |           |                      |                                | BOOT1     |
-#define PB3  19  // | 19      |        | USART1_RX | TWI2_SDA             | SPI3_SCK,  (SPI1_SCK)          |           |
-#define PB4  20  // | 20      |        |           | TWI3_SDA             | SPI3_MISO, (SPI1_MISO)         |           |
-#define PB5  21  // | 21      |        |           |                      | SPI3_MOSI, (SPI1_MOSI)         |           |
-#define PB6  22  // | 22      |        | USART1_TX | TWI1_SCL             |                                |           |
-#define PB7  23  // | 23      |        | USART1_RX | TWI1_SDA             |                                |           |
-#define PB8  24  // | 24      |        |           | TWI1_SCL, (TWI3_SDA) | SPI5_MOSI                      |           |
-#define PB9  25  // | 25      |        |           | TWI1_SDA, (TWI2_SDA) | SPI2_SS                        |           |
-#define PB10 26  // | 26      |        |           | TWI2_SCL             | SPI2_SCK                       |           |
-#define PB12 27  // | 27      |        |           |                      | SPI3_SCK, (SPI2_SS), (SPI4_SS) |           |
-#define PB13 28  // | 28      |        |           |                      | SPI4_SCK, (SPI2_SCK)           |           |
-#define PB14 29  // | 29      |        |           |                      | SPI2_MISO                      |           |
-#define PB15 30  // | 30      |        |           |                      | SPI2_MOSI                      |           |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
-#define PC0  A10 // | 31      | A10    |           |                      |                                |           |
-#define PC1  A11 // | 32      | A11    |           |                      |                                |           |
-#define PC2  A12 // | 33      | A12    |           |                      | SPI2_MISO                      |           |
-#define PC3  A13 // | 34      | A13    |           |                      | SPI2_MOSI                      |           |
-#define PC4  A14 // | 35      | A14    |           |                      |                                |           |
-#define PC5  A15 // | 36      | A15    |           |                      |                                |           |
-#define PC6  37  // | 37      |        | USART6_TX |                      |                                |           |
-#define PC7  38  // | 38      |        | USART6_RX |                      | SPI2_SCK                       |           |
-#define PC8  39  // | 39      |        |           |                      |                                |           |
-#define PC9  40  // | 40      |        |           | TWI3_SDA             |                                |           |
-#define PC10 41  // | 41      |        |           |                      | SPI3_SCK                       |           |
-#define PC11 42  // | 42      |        |           |                      | SPI3_MISO                      |           |
-#define PC12 43  // | 43      |        |           |                      | SPI3_MOSI                      |           |
-#define PC13 44  // | 44      |        |           |                      |                                |           |
-#define PC14 45  // | 45      |        |           |                      |                                | OSC32_IN  |
-#define PC15 46  // | 46      |        |           |                      |                                | OSC32_OUT |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
-#define PD2  47  // | 47      |        |           |                      |                                |           |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
-#define PH0  48  // | 48      |        |           |                      |                                | OSC_IN    |
-#define PH1  49  // | 49      |        |           |                      |                                | OSC_OUT   |
-//                  |---------|--------|-----------|----------------------|--------------------------------|-----------|
+// Define pin names to match digital pin number --> Dx
+// It could be used with preprocessor tests (e.g. #if PXn == 3)
+// so an enum will not work.
+// !!!
+// !!! Copy the digitalPin[] array from the variant.cpp
+// !!! and remove all '_': PX_n --> PXn
+// !!! For NC, comment the line to warn x pin number is NC
+// !!! // x is NC
+// !!! For duplicated pin name, comment the line to warn x pin number
+// !!! is PXn which is already defined with y pin number
+// !!! // x is PXn (y)
+// !!! Ex:
+// !!! ...
+// !!! #define PA4  20 // A14
+// !!! #define PB4  21
+// !!! #define PB5  22
+// !!! #define PB3  23
+// !!! // 24 is PA4 (20)
+// !!! // 25 is PB4 (21)
+// !!! #define PA2  26 // A15
+// !!! ...
+//#define PXn x
+#define PA5  0 //D0
+#define PA6  1 //D1
+#define PA7  2 //D2
+// Duplicated analog pins
+// #define PA5  50 //D50/A5
+// #define PA6  51 //D51/A6
+// #define PA7  52 //D52/A7
+#define PA8  3 //D3
+#define PA9  4 //D4
+#define PA10  	5	//D5
+#define PA11  	6	//D6
+#define PA12  	7	//D7
+#define PA13  	8	//D8
+#define PA14  	9	//D9
+#define PA15  	10	//D10
+#define PB0  11 //D11
+#define PB1  12 //D12
+#define PB2  13 //D13
+#define PB3  14 //D14
+#define PB4  15 //D15
+#define PB5  16 //D16
+#define PB6  17 //D17
+#define PB7  18 //D18
+#define PB8  19 //D19
+#define PB9  20 //D20
+#define PB10    21  //D21
+#define PB11    22  //D22
+#define PB12    23  //D23
+#define PB13    24  //D24
+#define PB14    25  //D25
+#define PB15    26  //D26
+#define PC0  27 //D27
+#define PC1  28 //D28
+#define PC2  29 //D29
+#define PC3  30 //D30
+#define PC4  31 //D31
+#define PC5  32 //D32
+#define PC6  33 //D33
+#define PC7  34 //D34
+#define PC8  35 //D35
+#define PC9  36 //D36
+#define PC10   37 //D37
+#define PC11   38 //D38
+#define PC12   39 //D39
+#define PC13   40 //D40
+#define PC14   41 //D41
+#define PC15   42 //D42
+#define PH0  43 //D43
+#define PH1  44 //D44
+#define PA0  45 //D45/A0
+#define PA1  46 //D46/A1
+#define PA2  47 //D47/A2
+#define PA3  48 //D48/A3
+#define PA4  49 //D49/A4
 
 // This must be a literal
-#define NUM_DIGITAL_PINS        50
-#define NUM_ANALOG_INPUTS       16
+// It is used with preprocessor tests (e.g. #if NUM_DIGITAL_PINS > 3)
+// so an enum will not work.
+#define NUM_DIGITAL_PINS        53
+
+// Allow to define Arduino style alias for analog input pin number --> Ax
+// If no analog pin required then NUM_ANALOG_INPUTS and NUM_ANALOG_FIRST
+// could not be defined or set to respectively `0` and `NUM_DIGITAL_PINS`
+// All pins are digital, analog inputs are a subset of digital pins
+// and must be contiguous to be able to loop on each value
+// This must be a literal with a value less than or equal to MAX_ANALOG_INPUTS
+// defined in pin_arduino.h
+// It is used with preprocessor tests (e.g. #if NUM_ANALOG_INPUTS > 3)
+// so an enum will not work.
+// !!!
+// !!! It must be aligned with the number of analog PinName
+// !!! defined in digitalPin[] array in variant.cpp
+// !!!
+#define NUM_ANALOG_INPUTS       8
+// Define digital pin number of the first analog input  (i.e. which digital pin is A0)
+// First analog pin value (A0) must be greater than or equal to NUM_ANALOG_INPUTS
+#define NUM_ANALOG_FIRST        45
+
+// Below ADC, DAC and PWM definitions already done in the core
+// Could be redefined here if needed
+// ADC resolution is 12bits
+//#define ADC_RESOLUTION          12
+//#define DACC_RESOLUTION         12
+
+// PWM resolution
+//#define PWM_RESOLUTION          8
+//#define PWM_FREQUENCY           1000
+//#define PWM_MAX_DUTY_CYCLE      255
 
 // On-board LED pin number
-#ifndef LED_BUILTIN
-#define LED_BUILTIN             PA5
-#endif
+#define LED_BUILTIN             -1
 #define LED_GREEN               LED_BUILTIN
 
 // On-board user button
-#ifndef USER_BTN
-#define USER_BTN                PC13
-#endif
+#define USER_BTN                -1
 
-// SPI definitions
-#define PIN_SPI_SS              PA4
-#define PIN_SPI_SS1             PA4
-#define PIN_SPI_SS2             PB9
-#define PIN_SPI_SS3             PA15
-#define PIN_SPI_SS5             PB1
-#define PIN_SPI_MOSI            PA7
-#define PIN_SPI_MISO            PA6
-#define PIN_SPI_SCK             PA5
+// Below SPI and I2C definitions already done in the core
+// Could be redefined here if differs from the default one
+// SPI Definitions
+//#define PIN_SPI_SS              10 // Default for Arduino connector compatibility
+//#define PIN_SPI_MOSI            11 // Default for Arduino connector compatibility
+//#define PIN_SPI_MISO            12 // Default for Arduino connector compatibility
+//#define PIN_SPI_SCK             13 // Default for Arduino connector compatibility
 
-// I2C definitions
-#define PIN_WIRE_SDA            PB9
-#define PIN_WIRE_SCL            PB8
+// I2C Definitions
+//#define PIN_WIRE_SDA            14 // Default for Arduino connector compatibility
+//#define PIN_WIRE_SCL            15 // Default for Arduino connector compatibility
 
-// Timer Definitions
+// I2C timing definitions (optional), avoid time spent to compute if defined
+// * I2C_TIMING_SM for Standard Mode (100kHz)
+// * I2C_TIMING_FM for Fast Mode (400kHz)
+// * I2C_TIMING_FMP for Fast Mode Plus (1000kHz)
+//#define I2C_TIMING_SM           0x00000000
+//#define I2C_TIMING_FM           0x00000000
+//#define I2C_TIMING_FMP          0x00000000
+
+// Timer Definitions (optional)
+// Use TIM6/TIM7 when possible as servo and tone don't need GPIO output pin
 #define TIMER_TONE              TIM10
 #define TIMER_SERVO             TIM11
 
 // UART Definitions
-#define SERIAL_UART_INSTANCE    2 //Connected to ST-Link
+// Define here Serial instance number to map on Serial generic name
+#define SERIAL_UART_INSTANCE    1 //ex: 2 for Serial2 (USART2)
+// DEBUG_UART could be redefined to print on another instance than 'Serial'
+//#define DEBUG_UART              ((USART_TypeDef *) U(S)ARTX) // ex: USART3
+// DEBUG_UART baudrate, default: 9600 if not defined
+//#define DEBUG_UART_BAUDRATE     x
+// DEBUG_UART Tx pin name, default: the first one found in PinMap_UART_TX for DEBUG_UART
+//#define DEBUG_PINNAME_TX        PX_n // PinName used for TX
 
 // Default pin used for 'Serial' instance (ex: ST-Link)
 // Mandatory for Firmata
-#define PIN_SERIAL_RX           PA3
-#define PIN_SERIAL_TX           PA2
+#define PIN_SERIAL_RX           PA10
+#define PIN_SERIAL_TX           PA9
+
+// Optional PIN_SERIALn_RX and PIN_SERIALn_TX where 'n' is the U(S)ART number
+// Used when user instanciate a hardware Serial using its peripheral name.
+// Example: HardwareSerial mySerial(USART3);
+// will use PIN_SERIAL3_RX and PIN_SERIAL3_TX if defined.
+//#define PIN_SERIALn_RX          x // For U(S)ARTn RX
+//#define PIN_SERIALn_TX          x // For U(S)ARTn TX
+//#define PIN_SERIALLP1_RX        x // For LPUART1 RX
+//#define PIN_SERIALLP1_TX        x // For LPUART1 TX
+
+// SD card slot Definitions
+// SD detect signal can be defined if required
+//#define SD_DETECT_PIN           x
+// SD Read/Write timeout, default value defined in STM32SD library
+//#define SD_DATATIMEOUT          x
 
 #ifdef __cplusplus
 } // extern "C"
@@ -131,23 +203,23 @@ extern "C" {
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
-  // These serial port names are intended to allow libraries and architecture-neutral
-  // sketches to automatically default to the correct port name for a particular type
-  // of use.  For example, a GPS module would normally connect to SERIAL_PORT_HARDWARE_OPEN,
-  // the first hardware serial port whose RX/TX pins are not dedicated to another use.
-  //
-  // SERIAL_PORT_MONITOR        Port which normally prints to the Arduino Serial Monitor
-  //
-  // SERIAL_PORT_USBVIRTUAL     Port which is USB virtual serial
-  //
-  // SERIAL_PORT_LINUXBRIDGE    Port which connects to a Linux system via Bridge library
-  //
-  // SERIAL_PORT_HARDWARE       Hardware serial port, physical RX & TX pins.
-  //
-  // SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.  Their RX & TX
-  //                            pins are NOT connected to anything by default.
-  #define SERIAL_PORT_MONITOR     Serial
-  #define SERIAL_PORT_HARDWARE    Serial
+// These serial port names are intended to allow libraries and architecture-neutral
+// sketches to automatically default to the correct port name for a particular type
+// of use.  For example, a GPS module would normally connect to SERIAL_PORT_HARDWARE_OPEN,
+// the first hardware serial port whose RX/TX pins are not dedicated to another use.
+//
+// SERIAL_PORT_MONITOR        Port which normally prints to the Arduino Serial Monitor
+//
+// SERIAL_PORT_USBVIRTUAL     Port which is USB virtual serial
+//
+// SERIAL_PORT_LINUXBRIDGE    Port which connects to a Linux system via Bridge library
+//
+// SERIAL_PORT_HARDWARE       Hardware serial port, physical RX & TX pins.
+//
+// SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.  Their RX & TX
+//                            pins are NOT connected to anything by default.
+#define SERIAL_PORT_MONITOR     Serial
+#define SERIAL_PORT_HARDWARE    Serial
 #endif
 
 #endif /* _VARIANT_ARDUINO_STM32_ */

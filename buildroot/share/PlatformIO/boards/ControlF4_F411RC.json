@@ -2,7 +2,7 @@
   "build": {
     "core": "stm32",
     "cpu": "cortex-m4",
-    "extra_flags": "-DSTM32F4 -DSTM32F411xE",
+    "extra_flags": "-DSTM32F4 -DSTM32F411xE -DSTM32F4xx",
     "f_cpu": "96000000L",
     "hwids": [["0x0403", "0x6001"]],
     "mcu": "stm32f411rct6",
