@@ -50,7 +50,6 @@ extern "C" {
 // Duplicated analog pins
 // #define PA5  50 //D50/A5
 // #define PA6  51 //D51/A6
-// #define PA7  52 //D52/A7
 #define PA8  3 //D3
 #define PA9  4 //D4
 #define PA10  	5	//D5
@@ -117,7 +116,7 @@ extern "C" {
 // !!! It must be aligned with the number of analog PinName
 // !!! defined in digitalPin[] array in variant.cpp
 // !!!
-#define NUM_ANALOG_INPUTS       8
+#define NUM_ANALOG_INPUTS       7
 // Define digital pin number of the first analog input  (i.e. which digital pin is A0)
 // First analog pin value (A0) must be greater than or equal to NUM_ANALOG_INPUTS
 #define NUM_ANALOG_FIRST        45
@@ -166,6 +165,8 @@ extern "C" {
 #define TIMER_SERVO             TIM11
 
 // UART Definitions
+#define HAVE_HWSERIAL1
+#define HAVE_HWSERIAL6
 // Define here Serial instance number to map on Serial generic name
 #define SERIAL_UART_INSTANCE    1 //ex: 2 for Serial2 (USART2)
 // DEBUG_UART could be redefined to print on another instance than 'Serial'
