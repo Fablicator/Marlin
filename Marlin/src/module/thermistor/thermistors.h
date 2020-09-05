@@ -126,6 +126,9 @@ typedef struct { int16_t value, celsius; } temp_entry_t;
 #if ANY_THERMISTOR_IS(23) // By AluOne #12622. Formerly 22 above. May need calibration/checking.
   #include "thermistor_23.h"
 #endif
+#if ANY_THERMISTOR_IS(24) // PT100 Sensor with TSZ124
+  #include "thermistor_24.h"
+#endif
 #if ANY_THERMISTOR_IS(51) // beta25 = 4092 K, R25 = 100 kOhm, Pull-up = 1 kOhm, "EPCOS"
   #include "thermistor_51.h"
 #endif
