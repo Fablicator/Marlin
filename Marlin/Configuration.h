@@ -447,19 +447,28 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 999
-#if EXTRUDERS == 2
-  #define TEMP_SENSOR_1 999
+#ifdef STM32F4
+  #define TEMP_SENSOR_PT100 24
+#else 
+  #define TEMP_SENSOR_PT100 20
 #endif
-#define TEMP_SENSOR_2 0
+
+#define TEMP_SENSOR_0 TEMP_SENSOR_PT100
+#if EXTRUDERS > 1
+  #define TEMP_SENSOR_1 TEMP_SENSOR_PT100
+#endif
+#if EXTRUDERS > 2
+#define TEMP_SENSOR_2 TEMP_SENSOR_PT100
+#endif
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 0
-
+#ifdef HAS_HEATED_CHAMBER
+#define TEMP_SENSOR_CHAMBER TEMP_SENSOR_PT100
+#endif
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
 #define DUMMY_THERMISTOR_999_VALUE 100
