@@ -107,8 +107,13 @@
   #define BED_PULLUP_RESISTOR_OHMS     3300    // Pullup resistor
   
   // Honeywell 175-103LAE
-  #define BED_RESISTANCE_25C_OHMS      10292  // Resistance at 25C
-  #define BED_BETA                     3386    // Beta value
+  // #define BED_RESISTANCE_25C_OHMS      10292  // Resistance at 25C
+  // #define BED_BETA                     3386    // Beta value
+
+  // Vishay NTHS1206N02N1002HE
+  #define BED_RESISTANCE_25C_OHMS      10000  // Resistance at 25C
+  #define BED_BETA                     3671    // Beta value
+
 #endif
 
 #if TEMP_SENSOR_CHAMBER == 1000
@@ -1768,7 +1773,7 @@
   #define MIN_ARC_SEGMENTS       24 // Minimum number of segments in a complete circle
   //#define ARC_SEGMENTS_PER_SEC 50 // Use feedrate to choose segment length (with MM_PER_ARC_SEGMENT as the minimum)
   #define N_ARC_CORRECTION       25 // Number of interpolated segments between corrections
-  //#define ARC_P_CIRCLES           // Enable the 'P' parameter to specify complete circles
+  #define ARC_P_CIRCLES           // Enable the 'P' parameter to specify complete circles
   //#define CNC_WORKSPACE_PLANES    // Allow G2/G3 to operate in XY, ZX, or YZ planes
 #endif
 
@@ -1862,15 +1867,23 @@
 #elif ENABLED(SDSUPPORT)
   #define BLOCK_BUFFER_SIZE 16
 #else
+#ifdef STM32F4
+  #define BLOCK_BUFFER_SIZE 64 // maximize block buffer
+#else
   #define BLOCK_BUFFER_SIZE 32 // maximize block buffer
+#endif
 #endif
 
 // @section serial
 
 // The ASCII buffer for serial input
+#ifdef STM32F4
+#define MAX_CMD_SIZE 192
+#define BUFSIZE 64
+#else
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 16
-
+#endif
 // Transmission to Host Buffer Size
 // To save 386 bytes of PROGMEM (and TX_BUFFER_SIZE+3 bytes of RAM) set to 0.
 // To buffer a simple "ok" you need 4 bytes.
@@ -1878,8 +1891,11 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
+#ifdef STM32F4
+#define TX_BUFFER_SIZE 128
+#else
 #define TX_BUFFER_SIZE 0
-
+#endif
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.

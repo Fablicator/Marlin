@@ -137,8 +137,7 @@
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
 #ifdef STM32F4
-  // #define BAUDRATE 115200
-  #define BAUDRATE 250000
+  #define BAUDRATE 115200
 #else
   #define BAUDRATE 250000
 #endif
@@ -790,7 +789,11 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 806, 117 }
+#ifdef STM32F4
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 629.92, 629.92, 806, 234 } // Microstep setting {128, 128, 16, 32}
+#else
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 806, 117 } // 16 Microsteps
+#endif
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -811,11 +814,15 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 #if ENABLED(USING_FM1)
-  #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
 #elif ENABLED(USING_SX)
-  #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
 #elif ENABLED(USING_MX)
-  #define DEFAULT_MAX_ACCELERATION      { 2500,2000,120,10000 }
+#ifdef STM32F4
+#define DEFAULT_MAX_ACCELERATION      { 1000,500,80,10000 }
+#else
+#define DEFAULT_MAX_ACCELERATION      { 2500,2100,80,10000 }
+#endif
 #endif
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -867,7 +874,7 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.02 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.01 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
 #endif
 
@@ -1141,7 +1148,11 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
+#ifdef STM32F4
+#define INVERT_X_DIR true
+#else
 #define INVERT_X_DIR false
+#endif
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true
 
@@ -1149,7 +1160,11 @@
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
 #define INVERT_E0_DIR false
+#ifdef STM32F4
+#define INVERT_E1_DIR false
+#else
 #define INVERT_E1_DIR true
+#endif
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -1474,8 +1489,13 @@
 #endif
 
 // Homing speeds (mm/min)
+#ifdef STM32F4
+#define HOMING_FEEDRATE_XY (30*60)
+#define HOMING_FEEDRATE_Z  (4*60)
+#else
 #define HOMING_FEEDRATE_XY (50*60)
 #define HOMING_FEEDRATE_Z  (6*60)
+#endif
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
