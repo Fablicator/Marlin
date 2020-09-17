@@ -813,14 +813,20 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+#ifdef STM32F4
+#if ENABLED(USING_FM1)
+#define DEFAULT_MAX_ACCELERATION      { 900,700,80,10000 }
+#elif ENABLED(USING_SX)
+#define DEFAULT_MAX_ACCELERATION      { 800,600,80,10000 }
+#elif ENABLED(USING_MX)
+#define DEFAULT_MAX_ACCELERATION      { 800, 500, 70, 10000 }
+#endif
+#else
 #if ENABLED(USING_FM1)
 #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
 #elif ENABLED(USING_SX)
 #define DEFAULT_MAX_ACCELERATION      { 2500,2500,200,10000 }
 #elif ENABLED(USING_MX)
-#ifdef STM32F4
-#define DEFAULT_MAX_ACCELERATION      { 1000,500,80,10000 }
-#else
 #define DEFAULT_MAX_ACCELERATION      { 2500,2100,80,10000 }
 #endif
 #endif
@@ -838,10 +844,15 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
+#ifdef STM32F4
+#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   800    // X, Y, Z acceleration for travel (non printing) moves
+#else
 #define DEFAULT_ACCELERATION          2100    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   2100    // X, Y, Z acceleration for travel (non printing) moves
-
+#endif
 /**
  * Default Jerk limits (mm/s)
  * Override with M205 X Y Z E
