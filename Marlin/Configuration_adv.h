@@ -1833,7 +1833,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-#define MINIMUM_STEPPER_PULSE 3
+#define MINIMUM_STEPPER_PULSE 1
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
@@ -1868,7 +1868,7 @@
   #define BLOCK_BUFFER_SIZE 16
 #else
 #ifdef STM32F4
-  #define BLOCK_BUFFER_SIZE 64 // maximize block buffer
+  #define BLOCK_BUFFER_SIZE 128 // maximize block buffer
 #else
   #define BLOCK_BUFFER_SIZE 32 // maximize block buffer
 #endif
@@ -1879,7 +1879,7 @@
 // The ASCII buffer for serial input
 #ifdef STM32F4
 #define MAX_CMD_SIZE 192
-#define BUFSIZE 64
+#define BUFSIZE 128
 #else
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 16
