@@ -48,8 +48,8 @@
 
     SERIAL_ECHOLNPAIR("#define Z_MAX_POS ", Z_MAX_POS);
     SERIAL_ECHOLNPAIR("#define X1_BED_OFFSET ", X1_BED_OFFSET);
-    SERIAL_ECHOLNPAIR("#define X2_BED_OFFSET ", X2_BED_OFFSET);
     #if ENABLED(USING_MX)
+      SERIAL_ECHOLNPAIR("#define X2_BED_OFFSET ", X2_BED_OFFSET);
       float tmp[] = HOTEND_OFFSET_Y;
       SERIAL_ECHOLNPAIR("#define HOTEND_OFFSET_Y { ", tmp[0],", ", tmp[1], " }");
     #endif
