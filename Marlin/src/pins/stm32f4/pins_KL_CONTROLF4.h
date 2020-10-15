@@ -92,9 +92,9 @@
 
 //
 // Required for sanity check
-#define X_ENABLE_PIN 0
-#define X2_ENABLE_PIN 0
-#define Y_ENABLE_PIN 0
-#define Z_ENABLE_PIN 0
-#define E0_ENABLE_PIN 0
-#define E1_ENABLE_PIN 0
+#define X_ENABLE_PIN 999
+#define X2_ENABLE_PIN 999
+#define Y_ENABLE_PIN 999
+#define Z_ENABLE_PIN 999
+#define E0_ENABLE_PIN 999
+#define E1_ENABLE_PIN 999
