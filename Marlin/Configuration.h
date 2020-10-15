@@ -4,6 +4,11 @@
 //================== DON'T CHANGE ANYTHING BELOW THIS POINT ==================
 //============================================================================
 
+// Nozzle diameter in micrometers
+#ifndef NOZZLE_DIA
+  #define NOZZLE_DIA 350
+#endif
+
 #define MIN_EXTRUDER_DISTANCE 34.0 // Minimum distance between the tips of the nozzles
 
 #if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
@@ -803,7 +808,25 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 400, 350, 40, 40 }
+#if (NOZZLE_DIA == 350)
+
+#ifdef STM32F4
+#define E_MAX_FEEDRATE 0.9
+#else
+#define E_MAX_FEEDRATE 40
+#endif
+
+#elif (NOZZLE_DIA == 600)
+
+#ifdef STM32F4
+#define E_MAX_FEEDRATE 0.9
+#else
+#define E_MAX_FEEDRATE 40
+#endif
+
+#endif
+
+#define DEFAULT_MAX_FEEDRATE          { 400, 350, 40, E_MAX_FEEDRATE }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
