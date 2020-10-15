@@ -789,8 +789,11 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+// Calculate steps per unit from microstep setting and movement per full step
+#define USTEP(S, M) S*M
+
 #ifdef STM32F4
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 629.92, 629.92, 806, 234 } // Microstep setting {128, 128, 16, 32}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { USTEP(4.92125,X_MICROSTEPS), USTEP(4.92125,Y_MICROSTEPS), USTEP(50.375,Z_MICROSTEPS), USTEP(7.3125,E_MICROSTEPS) }
 #else
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 806, 117 } // 16 Microsteps
 #endif
