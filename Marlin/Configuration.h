@@ -819,7 +819,7 @@
 #elif (NOZZLE_DIA == 600)
 
 #ifdef STM32F4
-#define E_MAX_FEEDRATE 0.9
+#define E_MAX_FEEDRATE 2.35
 #else
 #define E_MAX_FEEDRATE 40
 #endif
