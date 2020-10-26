@@ -813,14 +813,14 @@
 #elif (NOZZLE_DIA == 600)
 
 #ifdef STM32F4
-#define E_MAX_FEEDRATE 2.35
+#define E_MAX_FEEDRATE 2.0
 #else
 #define E_MAX_FEEDRATE 40
 #endif
 
 #endif
 
-#define DEFAULT_MAX_FEEDRATE          { 400, 350, 40, E_MAX_FEEDRATE }
+#define DEFAULT_MAX_FEEDRATE          { 240, 240, 40, E_MAX_FEEDRATE }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -839,7 +839,7 @@
 #elif ENABLED(USING_SX)
 #define DEFAULT_MAX_ACCELERATION      { 800,600,80,10000 }
 #elif ENABLED(USING_MX)
-#define DEFAULT_MAX_ACCELERATION      { 1200, 800, 70, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 500, 500, 70, 10000 }
 #endif
 #else
 #if ENABLED(USING_FM1)
@@ -865,9 +865,9 @@
  *   M204 T    Travel Acceleration
  */
 #ifdef STM32F4
-#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   800    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
 #else
 #define DEFAULT_ACCELERATION          2100    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
@@ -905,7 +905,7 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.01 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.02 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
 #endif
 
