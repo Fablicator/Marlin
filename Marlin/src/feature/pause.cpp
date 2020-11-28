@@ -600,8 +600,8 @@ void resume_print(const float &slow_load_length/*=0*/, const float &fast_load_le
     thermalManager.setTargetHotend(targetTemp, active_extruder);
   }
 
-  // Load the new filament
-  load_filament(slow_load_length, fast_load_length, purge_length, max_beep_count, true, nozzle_timed_out, PAUSE_MODE_SAME DXC_PASS);
+  if (nozzle_timed_out || thermalManager.hotEnoughToExtrude(active_extruder)) // Load the new filament
+    load_filament(slow_load_length, fast_load_length, purge_length, max_beep_count, true, nozzle_timed_out, PAUSE_MODE_SAME DXC_PASS);
   
   // What for the user to clear the purged filament from the extruder
   SERIAL_ECHO_START();
