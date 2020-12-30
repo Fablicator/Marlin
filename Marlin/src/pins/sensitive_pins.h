@@ -56,7 +56,7 @@
   #define _X_MS3
 #endif
 
-#define _X_PINS X_STEP_PIN, X_DIR_PIN, X_ENABLE_PIN, _X_MIN _X_MAX _X_MS1 _X_MS2 _X_MS3 _X_CS
+#define _X_PINS X_STEP_PIN, X_DIR_PIN, _X_MIN _X_MAX _X_MS1 _X_MS2 _X_MS3 _X_CS
 
 #if PIN_EXISTS(Y_MIN)
   #define _Y_MIN Y_MIN_PIN,
@@ -89,7 +89,7 @@
   #define _Y_MS3
 #endif
 
-#define _Y_PINS Y_STEP_PIN, Y_DIR_PIN, Y_ENABLE_PIN, _Y_MIN _Y_MAX _Y_MS1 _Y_MS2 _Y_MS3 _Y_CS
+#define _Y_PINS Y_STEP_PIN, Y_DIR_PIN, _Y_MIN _Y_MAX _Y_MS1 _Y_MS2 _Y_MS3 _Y_CS
 
 #if PIN_EXISTS(Z_MIN)
   #define _Z_MIN Z_MIN_PIN,
@@ -122,7 +122,7 @@
   #define _Z_MS3
 #endif
 
-#define _Z_PINS Z_STEP_PIN, Z_DIR_PIN, Z_ENABLE_PIN, _Z_MIN _Z_MAX _Z_MS1 _Z_MS2 _Z_MS3 _Z_CS
+#define _Z_PINS Z_STEP_PIN, Z_DIR_PIN, _Z_MIN _Z_MAX _Z_MS1 _Z_MS2 _Z_MS3 _Z_CS
 
 //
 // Extruder Chip Select, Digital Micro-steps
@@ -482,7 +482,7 @@
   #else
     #define _X2_MS3
   #endif
-  #define _X2_PINS X2_STEP_PIN, X2_DIR_PIN, X2_ENABLE_PIN, _X2_CS _X2_MS1 _X2_MS2 _X2_MS3
+  #define _X2_PINS X2_STEP_PIN, X2_DIR_PIN, _X2_CS _X2_MS1 _X2_MS2 _X2_MS3
 #else
   #define _X2_PINS
 #endif
