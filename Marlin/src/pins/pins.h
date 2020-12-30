@@ -625,7 +625,9 @@
   #include "stm32f4/pins_MKS_ROBIN2.h"          // STM32F4                                env:MKS_ROBIN2
 #elif MB(FYSETC_S6_V2_0)
   #include "stm32f4/pins_FYSETC_S6_V2_0.h"      // STM32F4                                env:FYSETC_S6
-
+#elif MB(KL_CONTROLF4)
+  #include "stm32f4/pins_KL_CONTROLF4.h"        // STM32F4
+  
 //
 // ARM Cortex M7
 //
