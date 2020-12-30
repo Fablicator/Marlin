@@ -1,7 +1,5 @@
 #include "Calibration.h"
 
-#define MIN_EXTRUDER_DISTANCE 34.0 // Minimum distance between the tips of the nozzles on MX machines
-
 #if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
   #error "No printer defined! Please define a printer at the top of the Configuration.h!"
 #endif
@@ -1201,13 +1199,13 @@
 #if ENABLED(USING_MX)
   #define X_MIN_POS 0
 #else
-  #define X_MIN_POS (-X1_BED_OFFSET)
+  #define X_MIN_POS -9.5
 #endif
 
 #if ENABLED(USING_MX)
-  #define X_MAX_POS (X_BED_SIZE + X1_BED_OFFSET - MIN_EXTRUDER_DISTANCE/2)
+  #define X_MAX_POS X_BED_SIZE
 #else
-  #define X_MAX_POS (X_BED_SIZE + X1_BED_OFFSET)
+  #define X_MAX_POS X_BED_SIZE
 #endif
 
 
@@ -1610,11 +1608,12 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
-
+#ifdef FILAMENT_RUNOUT_SENSOR
+  #define NOZZLE_PARK_FEATURE
+#endif
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 70), 0, 50 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
