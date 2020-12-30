@@ -776,6 +776,14 @@ void idle(TERN_(ADVANCED_PAUSE_FEATURE, bool no_stepper_sleep/*=false*/)) {
   #if HAS_TFT_LVGL_UI
     LV_TASK_HANDLER();
   #endif
+
+  #if ENABLED(STANDALONE_RESUME_BUTTON)
+    if(wait_for_user) {
+      if(!READ(BTN_ENC)) {
+        wait_for_user = false;
+      }
+    }
+  #endif
 }
 
 /**
@@ -1286,6 +1294,12 @@ void setup() {
 
   #if ENABLED(PASSWORD_ON_STARTUP)
     SETUP_RUN(password.lock_machine());      // Will not proceed until correct password provided
+  #endif
+
+  #if ENABLED(STANDALONE_RESUME_BUTTON)
+    #if BUTTON_EXISTS(ENC)
+      SET_INPUT_PULLUP(BTN_ENC);
+    #endif
   #endif
 
   marlin_state = MF_RUNNING;
