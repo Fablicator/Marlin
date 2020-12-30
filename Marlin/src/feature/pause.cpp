@@ -603,6 +603,13 @@ void resume_print(const float &slow_load_length/*=0*/, const float &fast_load_le
   // Load the new filament
   load_filament(slow_load_length, fast_load_length, purge_length, max_beep_count, true, nozzle_timed_out, PAUSE_MODE_SAME DXC_PASS);
 
+  // What for the user to clear the purged filament from the extruder
+  SERIAL_ECHO_START();
+  SERIAL_ECHOLNPGM("Clear purged filament then press resume.");
+  KEEPALIVE_STATE(PAUSED_FOR_USER);
+  wait_for_user = true;    // LCD click or M108 will clear this
+  while(wait_for_user) idle(true);
+
   if (targetTemp > 0) {
     thermalManager.setTargetHotend(targetTemp, active_extruder);
     thermalManager.wait_for_hotend(active_extruder, false);
