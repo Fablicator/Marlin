@@ -58,6 +58,10 @@
   #include "../../feature/spindle_laser.h"
 #endif
 
+#if HAS_FILAMENT_SENSOR
+  #include "../../feature/runout.h"
+#endif
+
 #define DEBUG_OUT ENABLED(DEBUG_LEVELING_FEATURE)
 #include "../../core/debug_out.h"
 
@@ -194,6 +198,11 @@
  *  Z   Home to the Z endstop
  */
 void GcodeSuite::G28() {
+  // Disable filament runout sensor state before homing
+  #if HAS_FILAMENT_SENSOR
+    bool runout_enabled_tmp = runout.enabled;
+    runout.enabled = false;
+  #endif
   DEBUG_SECTION(log_G28, "G28", DEBUGGING(LEVELING));
   if (DEBUGGING(LEVELING)) log_machine_info();
 
@@ -477,5 +486,10 @@ void GcodeSuite::G28() {
       const uint8_t cv = L64XX::chain[j];
       L64xxManager.set_param((L64XX_axis_t)cv, L6470_ABS_POS, stepper.position(L64XX_axis_xref[cv]));
     }
+  #endif
+
+  // Reset enabled state of runout sensors
+  #if HAS_FILAMENT_SENSOR
+    runout.enabled = runout_enabled_tmp;
   #endif
 }
