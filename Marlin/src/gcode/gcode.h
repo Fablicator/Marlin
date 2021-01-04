@@ -879,6 +879,8 @@ private:
     static void M1000();
   #endif
 
+  static void M9411();
+  
   TERN_(SDSUPPORT, static void M1001());
 
   TERN_(MAX7219_GCODE, static void M7219());
