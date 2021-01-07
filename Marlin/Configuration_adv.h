@@ -110,7 +110,7 @@
 
   // Vishay NTHS1206N02N1002HE
   #define BED_RESISTANCE_25C_OHMS      10000  // Resistance at 25C
-  #define BED_BETA                     3671    // Beta value
+  #define BED_BETA                     3800    // Beta value
 
 #endif
 
