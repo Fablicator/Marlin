@@ -1868,7 +1868,9 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_PULSE 2
+#ifdef STM32F4
+#define MINIMUM_STEPPER_PULSE 6
+#endif
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
@@ -1882,7 +1884,9 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MAXIMUM_STEPPER_RATE 250000
+#ifdef STM32F4
+#define MAXIMUM_STEPPER_RATE 4000000
+#endif
 
 // @section temperature
 
@@ -1969,7 +1973,7 @@
 #define SERIAL_OVERRUN_PROTECTION
 
 // For serial echo, the number of digits after the decimal point
-#define SERIAL_FLOAT_PRECISION 4
+// #define SERIAL_FLOAT_PRECISION 4
 
 // @section extras
 
