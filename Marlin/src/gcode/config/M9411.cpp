@@ -55,10 +55,13 @@ void GcodeSuite::M9411() {
     
     SERIAL_ECHOLN("");
 
-    SERIAL_ECHOLNPAIR("#define DEFAULT_Kp ", DEFAULT_Kp);
-    SERIAL_ECHOLNPAIR("#define DEFAULT_Ki ", DEFAULT_Ki);
-    SERIAL_ECHOLNPAIR("#define DEFAULT_Kd ", DEFAULT_Kd);
-    
+    #if ENABLED(PID_PARAMS_PER_HOTEND)
+    #else
+        SERIAL_ECHOLNPAIR("#define DEFAULT_Kp ", DEFAULT_Kp);
+        SERIAL_ECHOLNPAIR("#define DEFAULT_Ki ", DEFAULT_Ki);
+        SERIAL_ECHOLNPAIR("#define DEFAULT_Kd ", DEFAULT_Kd);
+    #endif
+        
     SERIAL_ECHOLN("");
 
     SERIAL_ECHOLNPAIR("#define TEMP_SENSOR_BED ", TEMP_SENSOR_BED);
