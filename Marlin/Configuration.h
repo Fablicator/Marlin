@@ -1199,7 +1199,7 @@
 #if ENABLED(USING_MX)
   #define X_MIN_POS 0
 #else
-  #define X_MIN_POS -9.5
+  #define X_MIN_POS -9
 #endif
 
 #if ENABLED(USING_MX)
