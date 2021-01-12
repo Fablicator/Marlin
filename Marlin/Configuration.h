@@ -1,4 +1,21 @@
-#include "Calibration.h"
+// #include "Calibration.h"
+
+#define USING_MX
+
+#define Z_MAX_POS 360
+#define X2_MAX_POS 360
+#define HOTEND_OFFSET_Y { 0.00, 0.10 }
+
+#define DEFAULT_Kp 16.72
+#define DEFAULT_Ki 1.65
+#define DEFAULT_Kd 42.46
+
+#define TEMP_SENSOR_BED 1000
+
+#define X_MICROSTEPS 128    
+#define Y_MICROSTEPS 128
+#define Z_MICROSTEPS 32
+#define E_MICROSTEPS 32
 
 #if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
   #error "No printer defined! Please define a printer at the top of the Configuration.h!"
@@ -780,12 +797,11 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define USTEP(S, M) S*M
 
 #ifdef STM32F4
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { USTEP(4.92125,X_MICROSTEPS), USTEP(4.92125,Y_MICROSTEPS), USTEP(50.375,Z_MICROSTEPS), USTEP(7.3125,E_MICROSTEPS) }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 128/1.8, 128/1.8, 32/1.8, 32/1.8 }
 #else
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 806, 117 } // 16 Microsteps
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 16/1.8, 16/1.8, 16/1.8, 16/1.8 }
 #endif
 
 /**
