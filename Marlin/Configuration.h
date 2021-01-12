@@ -10,13 +10,6 @@
 #define DEFAULT_Ki 1.65
 #define DEFAULT_Kd 42.46
 
-#define TEMP_SENSOR_BED 1000
-
-#define X_MICROSTEPS 128    
-#define Y_MICROSTEPS 128
-#define Z_MICROSTEPS 32
-#define E_MICROSTEPS 32
-
 #if DISABLED(USING_FM1) && DISABLED(USING_SX) && DISABLED(USING_MX)
   #error "No printer defined! Please define a printer at the top of the Configuration.h!"
 #endif
@@ -477,6 +470,12 @@
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
 #define TEMP_SENSOR_PROBE 0
+#ifdef STM32F4
+  #define BED_PULLUP_RESISTOR_OHMS     3300    // Pullup resistor
+#else
+  #define BED_PULLUP_RESISTOR_OHMS     10000    // Pullup resistor
+#endif
+#define TEMP_SENSOR_BED 1000
 #ifdef HAS_HEATED_CHAMBER
   #define TEMP_SENSOR_CHAMBER TEMP_SENSOR_PT100
 #endif
@@ -1270,7 +1269,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define STANDALONE_RESUME_BUTTON
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.

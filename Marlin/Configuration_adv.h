@@ -102,15 +102,15 @@
 #endif
 
 #if TEMP_SENSOR_BED == 1000
-  #define BED_PULLUP_RESISTOR_OHMS     3300    // Pullup resistor
+  // #define BED_PULLUP_RESISTOR_OHMS     3300    // Pullup resistor
   
   // Honeywell 175-103LAE
-  // #define BED_RESISTANCE_25C_OHMS      10292  // Resistance at 25C
-  // #define BED_BETA                     3386    // Beta value
+  #define BED_RESISTANCE_25C_OHMS      10292  // Resistance at 25C
+  #define BED_BETA                     3386    // Beta value
 
   // Vishay NTHS1206N02N1002HE
-  #define BED_RESISTANCE_25C_OHMS      10000  // Resistance at 25C
-  #define BED_BETA                     3800    // Beta value
+  // #define BED_RESISTANCE_25C_OHMS      10000  // Resistance at 25C
+  // #define BED_BETA                     3800    // Beta value
 
 #endif
 
@@ -3593,7 +3593,7 @@
 //
 // M42 - Set pin states
 //
-//#define DIRECT_PIN_CONTROL
+#define DIRECT_PIN_CONTROL
 
 //
 // M43 - display pin status, toggle pins, watch pins, watch endstops & toggle LED, test servo probe
@@ -3601,4 +3601,4 @@
 #define PINS_DEBUGGING
 
 // Enable Marlin dev mode which adds some special commands
-//#define MARLIN_DEV_MODE
+#define MARLIN_DEV_MODE
