@@ -6,9 +6,11 @@ except ImportError:
     env.Execute('"$PYTHONEXE" -m pip install xmodem')
 
 if sys.platform.startswith("win32"):
+    python_cmd = 'python'
     port_pattern = 'COM{0}'
     env.Replace(UPLOADER = '"$PROJECT_DIR\\buildroot\\share\\PlatformIO\\scripts\\stm32-xmodem-uploader.py"')
 elif sys.platform.startswith("linux"):
+    python_cmd = 'python3'
     port_pattern = '/dev/ttyUSB{0}'
     env.Replace(UPLOADER = '"$PROJECT_DIR/buildroot/share/PlatformIO/scripts/stm32-xmodem-uploader.py"')
 
@@ -30,4 +32,4 @@ if 'auto' in env['UPLOAD_PORT']:
     if port_name == '':
         raise IOError('Upload port cannot be automatically detected!')
 
-env.Replace(UPLOADCMD='python3 -u $UPLOADER "$UPLOAD_PORT" $UPLOAD_FLAGS "$BUILD_DIR/${PROGNAME}.bin"')
+env.Replace(UPLOADCMD=(python_cmd+' -u $UPLOADER "$UPLOAD_PORT" $UPLOAD_FLAGS "$BUILD_DIR/${PROGNAME}.bin"'))
