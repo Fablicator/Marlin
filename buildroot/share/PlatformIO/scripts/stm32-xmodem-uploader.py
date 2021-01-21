@@ -25,20 +25,11 @@ port = serial.Serial(PORT_PATH, timeout=1, baudrate=BAUDRATE, rtscts=HARDWARE_FL
 
 # Create modem and open firmware file
 binary_stream = open(BIN_PATH, 'rb')
-file_stats = os.stat(BIN_PATH)
-n_chunks = math.ceil(file_stats.st_size/128)
-chunks_sent = 0
-# print(file_stats.st_size)
-# sys.exit(1)
 
 def getc(size, timeout=1):
     return port.read(size) or None
 
 def putc(data, timeout=1):
-    global chunks_sent
-    if len(data) > 128:
-        chunks_sent = chunks_sent + 1
-        print("Sent {}/{} chunks.".format(chunks_sent,n_chunks))
     return port.write(data)
 
 modem = XMODEM(getc, putc)
